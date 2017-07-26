@@ -1,0 +1,28 @@
+module poro_pos (
+	input clk,
+	input frame,
+	input resetn,
+	input grab_success,
+	input hold,
+	output reg [8:0] x
+	);
+	
+	wire respawn;
+	
+	localparam	grabV = 9'd4, //2 pixels per frame
+				poroV = 9'd1; //1 pixels per frame
+	
+    always@(posedge frame)
+    begin
+        if((!resetn)|respawn|(x<=9'd1)|hold)
+            x <= 9'd319;
+        // else if(grab_success == 1'b1)
+			// x <= x - grabV;
+		else
+			x <= x - poroV; 
+    end 
+	
+	assign respawn = 0; //(grab_success)&&(x <= 9'd42);
+	
+	
+endmodule 
