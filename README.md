@@ -6,3 +6,5 @@ Verilog
 
 ### Environment
 Compile and run with FPGA
+
+## See final report for more details
